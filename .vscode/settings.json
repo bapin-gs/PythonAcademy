@@ -1,0 +1,14 @@
+{
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "github.copilot.chat.notebook.enabled": true,
+  "github.copilot.chat.inlineChat.enabled": true,
+  "editor.inlineSuggest.enabled": false,
+  "jupyter.notebookEditor.interactiveWindow.enabled": true
+}

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspaces/PythonAcademy:cached
+    
+    # Overrides default command so container doesn't exit immediately
+    command: sleep infinity
+
+    # Connect to the db service
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: trainings
+      POSTGRES_PASSWORD: trainings
+      POSTGRES_DB: trainings
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trainings -d trainings"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
